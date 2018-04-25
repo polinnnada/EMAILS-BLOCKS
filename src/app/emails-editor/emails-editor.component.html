@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="input-field col s12">
+    <app-email-block *ngFor="let email of emails"
+                     [email]="email"
+    >
+    </app-email-block>
+    <input class="col s3" id="email" type="email" placeholder="add more people..."
+           #box [value]="email"
+           (keydown)="onKeyDown($event)"
+           (input)="onInput($event, box.value)"
+           (blur)="onBlur($event)"
+           (change)="onChange(box.value)"
+    >
+  </div>
+</div>

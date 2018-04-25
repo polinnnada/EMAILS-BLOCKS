@@ -1,0 +1,8 @@
+.valid {
+  background-color: #a8e4e1 !important;
+}
+
+.invalid {
+  background-color: #fff !important;
+  border-bottom: 1px dashed #ff3b2d;
+}
