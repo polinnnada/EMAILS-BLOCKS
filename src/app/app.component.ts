@@ -6,13 +6,12 @@ import {EmailsEditorComponent} from './emails-editor/emails-editor.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [GetRandomEmailsService, EmailsEditorComponent]
+  providers: [GetRandomEmailsService]
 })
 
 export class AppComponent implements OnInit {
 
   @Input() init_emails = [];
-  @Input() emails_editor = new EmailsEditorComponent();
   new_email = '';
   emails_count = 0;
 
@@ -20,11 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRandomEmailsService.getEmails(10).subscribe(emails => {
-      emails.forEach(email => {
-        this.init_emails.push(email);
-      });
-    });
+    this.init_emails.push('sidorov@gmail.com');
   }
 
   alertEmailsCount() {

@@ -1,11 +1,10 @@
-import {Component, Injectable, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-emails-editor',
   templateUrl: './emails-editor.component.html',
   styleUrls: ['./emails-editor.component.css']
 })
-@Injectable()
 export class EmailsEditorComponent implements OnInit {
 
   @Input() _emails = [];
@@ -20,11 +19,12 @@ export class EmailsEditorComponent implements OnInit {
   }
 
   get emails(): any {
+    this.adding.emit(this._emails.length);
     return this._emails;
   }
 
 
-  addEmail(email: string) {
+  add(email: string) {
     if (email && email.trim()) {
       this._emails.push(email);
       this.email = '';
@@ -33,11 +33,22 @@ export class EmailsEditorComponent implements OnInit {
     }
   }
 
+  delete(email: string) {
+    const index = this._emails.indexOf(email);
+    this._emails.splice(index, 1);
+    // запускаем событие изменения количества емейлов
+    this.adding.emit(this._emails.length);
+  }
+
+  isValid() {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(this.email).toLowerCase());
+  }
+
   onKeyDown(event: KeyboardEvent) {
     if (['Enter', 'Comma'].includes(event.code)
-    // || ['KeyV'].includes(event.code) && event.ctrlKey
     ) {
-      this.addEmail((<HTMLInputElement>event.target).value);
+      this.add((<HTMLInputElement>event.target).value);
       (<HTMLInputElement>event.target).value = '';
       return false;
     }
@@ -45,7 +56,7 @@ export class EmailsEditorComponent implements OnInit {
 
   onInput(event: any, value: string) {
     if (event.inputType === 'insertFromPaste') {
-      this.addEmail(value);
+      this.add(value);
       console.log(this.email);
       // return '';
     } else {
@@ -54,11 +65,11 @@ export class EmailsEditorComponent implements OnInit {
   }
 
   onBlur(event: KeyboardEvent) {
-    this.addEmail(this.email);
+    this.add(this.email);
   }
 
   onChange(value: string) {
-    this.addEmail(value);
+    this.add(value);
   }
 
 }

@@ -1,0 +1,28 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main-form {
+  width: 500px;
+  height: 320px;
+}
+
+.container {
+  padding-left: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+button {
+  background-color: #2A79FF;
+  height: 36px;
+  color: white;
+  font-size: 14px;
+  -webkit-appearance: none;
+  -moz-border-radius:  4px; /* Firefox */
+  -webkit-border-radius: 4px; /* Safari 4 */
+  border-radius:  4px; /* IE 9, Safari 5, Chrome */
+  border: 0;
+  margin-right: 15px;
+  padding: 0px 17px 4px 16px;
+}

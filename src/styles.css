@@ -1,8 +1,33 @@
-.header {
-  font-size: 20px;
+
+.fixed-overlay__modal {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.email-block {
-  background-color: #6699ff;
-  border-radius: 16px;
+.fixed-overlay__modal::after {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 200%;
+  content: '';
+}
+
+.modal {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.modal_container {
+  margin: 50px;
+  padding: 20px;
+  min-width: 200px;
+  text-align: left;
+  white-space: normal;
+  background-color: #fff;
+  color: #000;
+}
+
+body {
+  margin: 0px !important;
 }
