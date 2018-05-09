@@ -11,7 +11,6 @@ import {EmailsEditorComponent} from './emails-editor/emails-editor.component';
 
 export class AppComponent implements OnInit {
 
-  @Input() init_emails = [];
   new_email = '';
   emails_count = 0;
 
@@ -19,7 +18,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.init_emails.push('sidorov@gmail.com');
+    this.new_email = 'sidorov@gmail.com';
+    // this.init_emails.push('sidorov@gmail.com');
   }
 
   alertEmailsCount() {
@@ -30,10 +30,15 @@ export class AppComponent implements OnInit {
     this.emails_count = count;
   }
 
-  addRandomEmail() {
+  addRandomEmail(id: string) {
+    const emails_editor: HTMLElement = document.getElementById(id);
     this.getRandomEmailsService.getEmails(1).subscribe(email => {
       if (email.length > 0) {
         this.new_email = email[0];
+        // emails_editor.setAttribute('ng-reflect-email', email[0]);
+        // emails_editor.setAttribute('email', email[0]);
+        // emails_editor.focus();
+        // emails_editor.blur();
       }
     });
   }

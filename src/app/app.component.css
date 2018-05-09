@@ -7,9 +7,28 @@
   height: 320px;
 }
 
+.environment {
+  background-color: #F5F5F5;
+}
+
+
+.environment {
+  background-color: #F5F5F5;
+}
+
+.header {
+  padding-top: 29px;
+  font-size: 20px;
+}
+
 .container {
   padding-left: 40px;
+  padding-bottom: 30px;
+}
+
+.buttons_container {
   padding-top: 30px;
+  padding-left: 40px;
   padding-bottom: 30px;
 }
 

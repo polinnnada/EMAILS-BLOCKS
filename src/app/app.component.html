@@ -1,12 +1,17 @@
 <div class="main-form">
-  <app-emails-editor [_emails]="init_emails"
-                     [email]="new_email"
-                     (adding)="onEmailsCountChange($event)"
-  >
+  <div class="environment">
+    <div class="container">
+      <div class="header">Share <strong>Board name</strong> with others</div>
+        <app-emails-editor id="editor-1"
+                           [email]="new_email"
+                           (adding)="onEmailsCountChange($event)"
+        >
 
-  </app-emails-editor>
-  <div class="container">
-      <button (click)="addRandomEmail()">Add email</button>
-      <button (click)="alertEmailsCount()">Get email count</button>
+        </app-emails-editor>
+    </div>
+  </div>
+  <div class="buttons_container">
+    <button (click)="addRandomEmail('editor-1')">Add email</button>
+    <button (click)="alertEmailsCount('editor-1')">Get email count</button>
   </div>
 </div>

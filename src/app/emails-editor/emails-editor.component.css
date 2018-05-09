@@ -2,26 +2,13 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-.environment {
-  background-color: #F5F5F5;
-}
-
-.header {
-  padding-top: 29px;
-  font-size: 20px;
-}
-
-.container {
-  padding-left: 40px;
-  padding-bottom: 30px;
-}
-
 .emails-editor {
   border-top: 1px solid #CCCCCC;
   margin-top: 34px;
   width: 420px;
   height: 99px;
   background-color: white;
+  /*padding: 2px 2px 2px 2px;*/
   /*overflow: scroll;*/
 }
 
@@ -30,7 +17,8 @@
   margin: 10px 10px 5px 5px;
   /*-webkit-appearance: none;*/
   outline:none;
-  color: #B7B7B7;
+  line-height: 10px;
+  /*color: #B7B7B7;*/
   /*width:100%;*/
   /*word-break: break-word;*/
   /*border-width:0px;*/

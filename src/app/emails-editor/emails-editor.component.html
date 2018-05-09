@@ -1,25 +1,20 @@
-<div class="environment">
-  <div class="container">
-    <div class="header">Share  with others</div>
-      <div class="emails-editor">
-        <div class="email-block"
-             *ngFor="let email1 of emails"
-             [ngClass]="{invalid: !isValid, valid: isValid}"
-        >
-          {{email1}}
-          <button class="close" (click)="delete(email1)">&#10006;</button>
-        </div>
-
-        <input id="email" type="email" class="email"
-               #box [value]="email"
-               (keydown)="onKeyDown($event)"
-               (input)="onInput($event, box.value)"
-               (blur)="onBlur($event)"
-               (change)="onChange(box.value)"
-               placeholder="add more people..."
-               aria-label="add more people..."
-        >
-
-      </div>
+<div class="emails-editor">
+  <div class="email-block"
+       *ngFor="let e of emails"
+       [ngClass]="{invalid: !isValid, valid: isValid}"
+  >
+    {{e}}
+    <button class="close" (click)="delete(e)">&#10006;</button>
   </div>
+
+  <input id="email" type="email" class="email"
+         #box [value]="email"
+         (keydown)="onKeyDown($event)"
+         (input)="onInput($event, box.value)"
+         (blur)="onBlur($event)"
+         (change)="onChange(box.value)"
+         placeholder="add more people..."
+         aria-label="add more people..."
+  >
+
 </div>

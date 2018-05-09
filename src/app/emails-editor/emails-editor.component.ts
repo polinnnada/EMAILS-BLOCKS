@@ -1,4 +1,4 @@
-import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, Input, Output, OnInit, EventEmitter, ChangeDetectorRef} from '@angular/core';
 
 @Component({
   selector: 'app-emails-editor',
@@ -7,22 +7,24 @@ import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 })
 export class EmailsEditorComponent implements OnInit {
 
-  @Input() _emails = [];
-  @Input() email = '';
+  private _emails = [];
+  @Input('email') email = '';
   @Output() adding = new EventEmitter<number>();
 
-  constructor() {
+  constructor(cd: ChangeDetectorRef) {
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    if (this.email) {
+      this.add(this.email);
+    }
   }
 
   get emails(): any {
     this.adding.emit(this._emails.length);
     return this._emails;
   }
-
 
   add(email: string) {
     if (email && email.trim()) {
