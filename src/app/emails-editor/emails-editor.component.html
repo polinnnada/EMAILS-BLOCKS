@@ -1,11 +1,9 @@
 <div class="emails-editor">
-  <div class="email-block"
-       *ngFor="let e of emails"
-       [ngClass]="{invalid: !isValid, valid: isValid}"
+  <app-email-block *ngFor="let email of emails"
+                   [email]="email"
+                   (deleting)="delete(email)"
   >
-    {{e}}
-    <button class="close" (click)="delete(e)">&#10006;</button>
-  </div>
+  </app-email-block>
 
   <input id="email" type="email" class="email"
          #box [value]="email"

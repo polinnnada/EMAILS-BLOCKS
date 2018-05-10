@@ -8,12 +8,10 @@ import {Component, Input, Output, OnInit, EventEmitter, ChangeDetectorRef} from 
 export class EmailsEditorComponent implements OnInit {
 
   private _emails = [];
-  @Input('email') email = '';
+  @Input() email = null;
   @Output() adding = new EventEmitter<number>();
-
-  constructor(cd: ChangeDetectorRef) {
+  constructor() {
   }
-
 
   ngOnInit() {
     if (this.email) {
@@ -28,8 +26,8 @@ export class EmailsEditorComponent implements OnInit {
 
   add(email: string) {
     if (email && email.trim()) {
-      this._emails.push(email);
       this.email = '';
+      this._emails.push(email);
       // запускаем событие изменения количества емейлов
       this.adding.emit(this._emails.length);
     }
@@ -40,11 +38,6 @@ export class EmailsEditorComponent implements OnInit {
     this._emails.splice(index, 1);
     // запускаем событие изменения количества емейлов
     this.adding.emit(this._emails.length);
-  }
-
-  isValid() {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(this.email).toLowerCase());
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -59,7 +52,10 @@ export class EmailsEditorComponent implements OnInit {
   onInput(event: any, value: string) {
     if (event.inputType === 'insertFromPaste') {
       this.add(value);
-      console.log(this.email);
+      (<HTMLInputElement>event.target).value = '';
+      // event.stopPropagation();
+      // // event.preventDefault();
+      // return true;
       // return '';
     } else {
       // this.value = value;

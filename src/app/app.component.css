@@ -7,21 +7,13 @@
   height: 320px;
 }
 
-.environment {
-  background-color: #F5F5F5;
-}
-
-
-.environment {
-  background-color: #F5F5F5;
-}
-
 .header {
   padding-top: 29px;
   font-size: 20px;
 }
 
 .container {
+  background-color: #F5F5F5;
   padding-left: 40px;
   padding-bottom: 30px;
 }
