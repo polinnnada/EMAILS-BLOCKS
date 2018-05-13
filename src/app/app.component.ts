@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GetRandomEmailsService} from './get-random-emails.service';
+import {EmailService} from './emails-editor/email.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
   new_email = '';
   emails_count = 0;
 
-  constructor(private getRandomEmailsService: GetRandomEmailsService) {
+  constructor(private getRandomEmailsService: GetRandomEmailsService,
+              private emailService: EmailService) {
   }
 
   ngOnInit() {
@@ -22,23 +24,26 @@ export class AppComponent implements OnInit {
   }
 
   alertEmailsCount() {
-    alert(this.emails_count);
+    // alert(this.emails_count);
+    alert(this.emailService.getEmailsCount());
   }
 
   onEmailsCountChange(count: number) {
     this.emails_count = count;
   }
 
-  addRandomEmail(id: string) {
-    // const emails_editor: HTMLElement = document.getElementById(id);
+  addRandomEmail() {
+    let new_email = '';
     this.getRandomEmailsService.getEmails(1).subscribe(email => {
       if (email.length > 0) {
-        this.new_email = email[0];
-        // emails_editor.setAttribute('ng-reflect-value', value[0]);
-        // emails_editor.setAttribute('value', value[0]);
-        // emails_editor.focus();
-        // emails_editor.blur();
+        new_email = email[0];
       }
     });
+
+    if (!new_email) {
+      new_email = this.getRandomEmailsService.getLocalEmail();
+    }
+
+    this.emailService.addEmailByText(new_email);
   }
 }

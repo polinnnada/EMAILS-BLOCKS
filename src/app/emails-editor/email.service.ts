@@ -17,8 +17,17 @@ export class EmailService {
     return this._emails;
   }
 
+  getEmailsCount() {
+    return this._emails.length;
+  }
+
   existEmail(email: Email) {
     return this._emails.find(em => em.value === email.value);
+  }
+
+  addEmailByText(email_text: string) {
+    const email = new Email(email_text);
+    return this.addEmail(email);
   }
 
   addEmail(email: Email) {

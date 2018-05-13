@@ -26,7 +26,6 @@ export class EmailsEditorComponent implements OnInit {
     // обновляем список при удалении емейлов
     this.emailService.onEmailDeleted.subscribe(
       (email: Email) => {
-        // this.delete(value);
         const index = this._emails.indexOf(email);
         this._emails.splice(index, 1);
       },
@@ -48,14 +47,16 @@ export class EmailsEditorComponent implements OnInit {
   add(email_text: string) {
     if (email_text && email_text.trim()) {
       try {
-        this.emailService.addEmail(new Email(email_text));
+        this.emailService.addEmailByText(email_text);
         this.email_text = null;
         // запускаем событие изменения количества емейлов
         this.count_changing.emit(this._emails.length);
+        return true;
       } catch (e) {
         // alert(e);
       }
     }
+    return false;
   }
 
   delete(email: Email) {
@@ -71,14 +72,16 @@ export class EmailsEditorComponent implements OnInit {
   onKeyDown(event: KeyboardEvent) {
     if (['Enter', 'Comma'].includes(event.code)
     ) {
-      this.add((<HTMLInputElement>event.target).value);
-      event.preventDefault();
+      if (this.add((<HTMLInputElement>event.target).value)) {
+        event.preventDefault();
+      }
     }
   }
 
   onPaste(event) {
-    this.add(event.clipboardData.getData('text'));
-    event.preventDefault();
+    if (this.add(event.clipboardData.getData('text'))) {
+      event.preventDefault();
+    }
   }
 
   onBlur() {
