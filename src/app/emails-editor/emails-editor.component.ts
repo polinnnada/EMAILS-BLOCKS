@@ -10,40 +10,18 @@ import {EmailService} from './email.service';
 export class EmailsEditorComponent implements OnInit {
 
   private _emails: Email[] = [];
-  @Input() email_text: string = null;
   @Input() id: string = null;
-  @Output() count_changing = new EventEmitter<number>();
+  email_text: string = null;
 
   constructor(private emailService: EmailService) {
   }
 
   ngOnInit() {
-    // this._emails = this.emailService.getEmails();
-    // обновляем список при добавлении емейлов
-    this.emailService.onEmailAdded.subscribe(
-      (email: Email) => {
-            this._emails.push(email);
-          },
-          (error) => alert(error)
-    );
-    // обновляем список при удалении емейлов
-    this.emailService.onEmailDeleted.subscribe(
-      (email: Email) => {
-        const index = this._emails.indexOf(email);
-        this._emails.splice(index, 1);
-      },
-      (error) => alert(error)
-    );
-
-
-    // инициализация списка
-    if (this.email_text) {
-      this.add(this.email_text);
-    }
-
+    this._emails = this.emailService.getEmails();
   }
 
   get emails(): any {
+    // this._emails = this.emailService.getEmails();
     return this._emails;
   }
 
@@ -52,8 +30,6 @@ export class EmailsEditorComponent implements OnInit {
       try {
         this.emailService.addEmailByText(email_text);
         this.email_text = null;
-        // запускаем событие изменения количества емейлов
-        this.count_changing.emit(this._emails.length);
         return true;
       } catch (e) {
         // alert(e);
@@ -65,8 +41,6 @@ export class EmailsEditorComponent implements OnInit {
   delete(email: Email) {
     try {
       this.emailService.deleteEmail(email);
-      // запускаем событие изменения количества емейлов
-      this.count_changing.emit(this._emails.length);
     } catch (e) {
       alert(e);
     }

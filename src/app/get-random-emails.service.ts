@@ -43,7 +43,6 @@ export class GetRandomEmailsService {
 
   getLocalEmail() {
     let local_index = Math.floor(Math.random() * 20);
-    console.log(local_index);
     return this.local_emails[local_index].value;
   }
 

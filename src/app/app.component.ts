@@ -11,25 +11,16 @@ import {EmailService} from './emails-editor/email.service';
 
 export class AppComponent implements OnInit {
 
-  new_email = '';
-  emails_count = 0;
-
   constructor(private getRandomEmailsService: GetRandomEmailsService,
               private emailService: EmailService) {
   }
 
   ngOnInit() {
-    this.new_email = 'sidorov@gmail.com';
-    // this.init_emails.push('sidorov@gmail.com');
+    this.emailService.addEmailByText('sidorov@gmail.com');
   }
 
   alertEmailsCount() {
-    // alert(this.emails_count);
     alert(this.emailService.getEmailsCount());
-  }
-
-  onEmailsCountChange(count: number) {
-    this.emails_count = count;
   }
 
   addRandomEmail() {
