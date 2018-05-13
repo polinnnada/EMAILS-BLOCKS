@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -17,7 +18,8 @@ import { EmailBlockComponent } from './emails-editor/email-block/email-block.com
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [GetRandomEmailsService],
   bootstrap: [AppComponent]

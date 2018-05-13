@@ -6,13 +6,16 @@
   </app-email-block>
 
   <input id="email" type="email" class="email"
-         #box [value]="email"
+         #box [(ngModel)]="email"
          (keydown)="onKeyDown($event)"
-         (input)="onInput($event, box.value)"
-         (blur)="onBlur($event)"
-         (change)="onChange(box.value)"
+         (paste)="onPaste($event)"
+         (blur)="onBlur()"
          placeholder="add more people..."
          aria-label="add more people..."
   >
 
 </div>
+
+<!--(keypress)="onKeyPress($event)"-->
+<!--(change)="onChange(box.value)"-->
+<!--(input)="onInput($event, box.value)"-->
