@@ -1,25 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import {GetRandomEmailsService} from './get-random-emails.service';
+import { GetRandomEmailsService } from './get-random-emails.service';
 import {HttpModule} from '@angular/http';
-import { EmailsEditorComponent } from './emails-editor/emails-editor.component';
-import { EmailBlockComponent } from './emails-editor/email-block/email-block.component';
+import { EmailsEditorModule } from './emails-editor/emails-editor.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EmailsEditorComponent,
-    EmailBlockComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
     HttpModule,
-    FormsModule
+    EmailsEditorModule
   ],
   providers: [GetRandomEmailsService],
   bootstrap: [AppComponent]
