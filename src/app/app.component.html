@@ -1,11 +1,10 @@
 <div class="main-form">
   <div class="container">
     <div class="header">Share <strong>Board name</strong> with others</div>
-      <app-emails-editor [id]="'editor-1'">
-      </app-emails-editor>
+    <app-emails-editor [id]="'editor-1'"></app-emails-editor>
   </div>
   <div class="buttons_container">
-    <button (click)="addRandomEmail('editor-1')">Add email</button>
-    <button (click)="alertEmailsCount('editor-1')">Get email count</button>
+    <button (click)="addRandomEmail()">Add email</button>
+    <button (click)="alertEmailsCount()">Get email count</button>
   </div>
 </div>
