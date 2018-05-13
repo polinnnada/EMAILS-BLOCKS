@@ -11,6 +11,7 @@ export class EmailsEditorComponent implements OnInit {
 
   private _emails: Email[] = [];
   @Input() email_text: string = null;
+  @Input() id: string = null;
   @Output() count_changing = new EventEmitter<number>();
 
   constructor(private emailService: EmailService) {
@@ -20,8 +21,10 @@ export class EmailsEditorComponent implements OnInit {
     // this._emails = this.emailService.getEmails();
     // обновляем список при добавлении емейлов
     this.emailService.onEmailAdded.subscribe(
-      (email: Email) => this._emails.push(email),
-      (error) => alert(error)
+      (email: Email) => {
+            this._emails.push(email);
+          },
+          (error) => alert(error)
     );
     // обновляем список при удалении емейлов
     this.emailService.onEmailDeleted.subscribe(
@@ -70,7 +73,7 @@ export class EmailsEditorComponent implements OnInit {
   }
 
   onKeyDown(event: KeyboardEvent) {
-    if (['Enter', 'Comma'].includes(event.code)
+    if (['Enter', ','].includes(event.key)
     ) {
       if (this.add((<HTMLInputElement>event.target).value)) {
         event.preventDefault();
