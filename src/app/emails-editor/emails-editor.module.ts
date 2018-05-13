@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 
+import { EmailService } from './email.service';
 import { EmailBlockComponent } from './email-block/email-block.component';
 import { EmailsEditorComponent } from './emails-editor.component';
 
@@ -17,9 +18,9 @@ import { EmailsEditorComponent } from './emails-editor.component';
     FormsModule
   ],
   exports: [
-    EmailsEditorComponent
+    EmailsEditorComponent,
   ],
-  providers: [],
-  bootstrap: []
+  providers: [EmailService],
+  bootstrap: [EmailsEditorComponent]
 })
 export class EmailsEditorModule { }

@@ -6,7 +6,7 @@
   </app-email-block>
 
   <input id="email" type="email" class="email"
-         #box [(ngModel)]="email"
+         #box [(ngModel)]="email_text"
          (keydown)="onKeyDown($event)"
          (paste)="onPaste($event)"
          (blur)="onBlur()"
@@ -15,7 +15,3 @@
   >
 
 </div>
-
-<!--(keypress)="onKeyPress($event)"-->
-<!--(change)="onChange(box.value)"-->
-<!--(input)="onInput($event, box.value)"-->

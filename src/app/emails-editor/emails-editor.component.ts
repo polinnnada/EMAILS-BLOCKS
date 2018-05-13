@@ -1,4 +1,6 @@
 import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
+import {Email} from './email.model';
+import {EmailService} from './email.service';
 
 @Component({
   selector: 'app-emails-editor',
@@ -7,37 +9,63 @@ import {Component, Input, Output, OnInit, EventEmitter} from '@angular/core';
 })
 export class EmailsEditorComponent implements OnInit {
 
-  private _emails = [];
-  @Input() email = null;
+  private _emails: Email[] = [];
+  @Input() email_text: string = null;
   @Output() count_changing = new EventEmitter<number>();
-  constructor() {
+
+  constructor(private emailService: EmailService) {
   }
 
   ngOnInit() {
-    if (this.email) {
-      this.add(this.email);
+    // this._emails = this.emailService.getEmails();
+    // обновляем список при добавлении емейлов
+    this.emailService.onEmailAdded.subscribe(
+      (email: Email) => this._emails.push(email),
+      (error) => alert(error)
+    );
+    // обновляем список при удалении емейлов
+    this.emailService.onEmailDeleted.subscribe(
+      (email: Email) => {
+        // this.delete(value);
+        const index = this._emails.indexOf(email);
+        this._emails.splice(index, 1);
+      },
+      (error) => alert(error)
+    );
+
+
+    // инициализация списка
+    if (this.email_text) {
+      this.add(this.email_text);
     }
+
   }
 
   get emails(): any {
-    this.count_changing.emit(this._emails.length);
     return this._emails;
   }
 
-  add(email: string) {
-    if (email && email.trim()) {
-      this.email = null;
-      this._emails.push(email);
-      // запускаем событие изменения количества емейлов
-      this.count_changing.emit(this._emails.length);
+  add(email_text: string) {
+    if (email_text && email_text.trim()) {
+      try {
+        this.emailService.addEmail(new Email(email_text));
+        this.email_text = null;
+        // запускаем событие изменения количества емейлов
+        this.count_changing.emit(this._emails.length);
+      } catch (e) {
+        // alert(e);
+      }
     }
   }
 
-  delete(email: string) {
-    const index = this._emails.indexOf(email);
-    this._emails.splice(index, 1);
-    // запускаем событие изменения количества емейлов
-    this.count_changing.emit(this._emails.length);
+  delete(email: Email) {
+    try {
+      this.emailService.deleteEmail(email);
+      // запускаем событие изменения количества емейлов
+      this.count_changing.emit(this._emails.length);
+    } catch (e) {
+      alert(e);
+    }
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -54,7 +82,7 @@ export class EmailsEditorComponent implements OnInit {
   }
 
   onBlur() {
-    this.add(this.email);
+    this.add(this.email_text);
   }
 
 }

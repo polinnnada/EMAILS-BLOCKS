@@ -1,6 +1,6 @@
 <div class="email-block"
-     [ngClass]="{invalid: !isValid, valid: isValid}"
+     [ngClass]="{invalid: !email.is_valid, valid: email.is_valid}"
 >
-  {{email}}
+  {{email.value}}
   <button class="close" (click)="delete()">&#10006;</button>
 </div>

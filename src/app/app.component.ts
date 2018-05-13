@@ -1,6 +1,5 @@
-import {Component, OnInit, Input, Inject, forwardRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetRandomEmailsService} from './get-random-emails.service';
-import {EmailsEditorComponent} from './emails-editor/emails-editor.component';
 
 @Component({
   selector: 'app-root',
@@ -31,12 +30,12 @@ export class AppComponent implements OnInit {
   }
 
   addRandomEmail(id: string) {
-    const emails_editor: HTMLElement = document.getElementById(id);
+    // const emails_editor: HTMLElement = document.getElementById(id);
     this.getRandomEmailsService.getEmails(1).subscribe(email => {
       if (email.length > 0) {
         this.new_email = email[0];
-        // emails_editor.setAttribute('ng-reflect-email', email[0]);
-        // emails_editor.setAttribute('email', email[0]);
+        // emails_editor.setAttribute('ng-reflect-value', value[0]);
+        // emails_editor.setAttribute('value', value[0]);
         // emails_editor.focus();
         // emails_editor.blur();
       }

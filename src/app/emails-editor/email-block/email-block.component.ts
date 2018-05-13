@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Email} from '../email.model';
 
 @Component({
   selector: 'app-email-block',
@@ -7,20 +8,13 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class EmailBlockComponent implements OnInit {
 
-  @Input() email;
-  @Output() isValid = true;
+  @Input() email: Email;
   @Output() deleting = new EventEmitter<boolean>();
 
   constructor() {
   }
 
   ngOnInit() {
-    this.isValid = this.validityCheck();
-  }
-
-  validityCheck() {
-    const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return email_regex.test(String(this.email).toLowerCase());
   }
 
   delete() {
