@@ -1,11 +1,11 @@
-<div class="emails-editor">
+<div class="emails-editor" ngx-auto-scroll>
   <app-email-block *ngFor="let email of emails"
                    [email]="email"
                    (deleting)="delete(email)"
   >
   </app-email-block>
 
-  <input id="email" type="email" class="email"
+  <input id="email" type="email" class="email-input"
          #box [(ngModel)]="email_text"
          (keydown)="onKeyDown($event)"
          (paste)="onPaste($event)"
