@@ -4,20 +4,27 @@
   width: 420px;
   height: 99px;
   background-color: white;
-  /*padding: 2px 2px 2px 2px;*/
   overflow: scroll;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
 }
 
-.email {
+.email-input {
   font-size: 14px;
   margin: 10px 10px 5px 5px;
-  /*-webkit-appearance: none;*/
-  outline:none;
+  outline: none;
   line-height: 10px;
-  /*color: #B7B7B7;*/
-  /*width:100%;*/
+  /*width: 50%;*/
   /*word-break: break-word;*/
   /*border-width:0px;*/
-  border:none;
+  border: none;
+
+  float: left;
+  display: inline-block;
 }
 
